@@ -4,11 +4,18 @@ import { AppComponent } from './app.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
 import { UsersComponent } from './users/users.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'test',
@@ -20,11 +27,12 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    component: UsersComponent
+    component: UsersComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: 'not-found',
-    component: AppComponent
+    component: UsersComponent
   },
   {
     path: '**',
